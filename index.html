@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101010">
+<title>NEXUS Coin</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101010;color:#f7f7f7;font-family:Arial,sans-serif}
+header{padding:25px 20px 12px;display:flex;justify-content:space-between;align-items:center}
+.logo{color:#e9bd64;font-weight:800;letter-spacing:3px}
+main{padding:12px 20px 95px;max-width:600px;margin:auto}
+h1{font-size:28px;margin:18px 0 6px}
+p{color:#aaa;line-height:1.5}
+.card{background:linear-gradient(135deg,#29251d,#171717);border:1px solid #5e4a28;border-radius:20px;padding:22px;margin:20px 0}
+.label{color:#c7b38b;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+.balance{font-size:36px;font-weight:700;margin:12px 0}
+button{cursor:pointer;border:0;border-radius:12px;padding:13px;background:#e9bd64;color:#17130c;font-weight:bold}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}
+.actions button{background:#242424;color:white;border:1px solid #393939;padding:15px 4px;font-size:12px}
+h2{font-size:18px;margin-top:28px}
+.item{background:#1d1d1d;padding:15px;border-radius:14px;margin:10px 0;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.item small{display:block;color:#aaa;margin-top:5px}
+.gold{color:#e9bd64}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:#181818;border-top:1px solid #333;padding:12px 3px calc(12px + env(safe-area-inset-bottom))}
+nav button{background:none;color:#aaa;padding:8px 5px;font-size:11px}
+nav button.active{color:#e9bd64}
+section[hidden]{display:none}
+.notice{font-size:12px;color:#888;margin-top:20px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">NEXUS COIN</div>
+  <div>◉</div>
+</header>
+<main>
+  <section id="inicio">
+    <p>Tu mundo de beneficios comienza aquí.</p>
+    <h1>Hola, bienvenido</h1>
+    <div class="card">
+      <div class="label">Saldo de demostración</div>
+      <div class="balance"><span id="saldo">1.250</span> <span class="gold">NC</span></div>
+      <p>Puntos de prueba · No representan dinero real</p>
+      <button onclick="ir('moneda')">Vincular mi moneda →</button>
+    </div>
+    <div class="actions">
+      <button onclick="ir('moneda')">◎<br><br>Mi moneda</button>
+      <button onclick="ir('recompensas')">◇<br><br>Beneficios</button>
+      <button onclick="ir('movimientos')">↗<br><br>Movimientos</button>
+    </div>
+    <h2>Beneficios destacados</h2>
+    <div class="item"><div>☕<b> Beneficio de bienvenida</b><small>Ejemplo de recompensa</small></div><span class="gold">250 NC</span></div>
+    <div class="item"><div>✦<b> Recompensa especial</b><small>Próximamente</small></div><span class="gold">500 NC</span></div>
+  </section>
+
+  <section id="moneda" hidden>
+    <h1>Mi moneda</h1>
+    <p>Vincula tu moneda física NEXUS cuando habilitemos la lectura segura.</p>
+    <div class="card" style="text-align:center">
+      <div style="font-size:65px">◉</div>
+      <h2>NEXUS Coin</h2>
+      <p>Estado: pendiente de vinculación</p>
+      <button onclick="alert('La lectura NFC se implementará en la siguiente etapa. Esta demo no lee monedas reales.')">Probar vinculación</button>
+    </div>
+    <p>También añadiremos lectura QR como alternativa.</p>
+  </section>
+
+  <section id="recompensas" hidden>
+    <h1>Recompensas</h1>
+    <p>Explora los beneficios de la comunidad NEXUS.</p>
+    <div class="item"><div><b>Descuento de bienvenida</b><small>Ejemplo, sujeto a configuración</small></div><button onclick="alert('Los canjes reales estarán disponibles cuando conectemos el servidor.')">Ver</button></div>
+    <div class="item"><div><b>Beneficio para miembros</b><small>Próximamente</small></div><span class="gold">NC</span></div>
+  </section>
+
+  <section id="movimientos" hidden>
+    <h1>Movimientos</h1>
+    <p>Historial ilustrativo de esta versión de prueba.</p>
+    <div class="item"><div>🎁 Bono inicial<small>Movimiento de demostración</small></div><span class="gold">+1.250 NC</span></div>
+    <p>Los movimientos reales necesitarán una base de datos y validación del servidor.</p>
+  </section>
+
+  <section id="perfil" hidden>
+    <h1>Mi perfil</h1>
+    <div class="item"><div>Usuario<small>Invitado de demostración</small></div></div>
+    <div class="item"><div>Seguridad<small>Inicio de sesión pendiente</small></div></div>
+    <p>El registro de usuarios se añadirá en la siguiente etapa.</p>
+  </section>
+  <p class="notice">NEXUS COIN · Prototipo inicial. Los saldos, beneficios y movimientos son ficticios.</p>
+</main>
+<nav>
+  <button class="active" data-page="inicio" onclick="ir('inicio')">⌂<br>Inicio</button>
+  <button data-page="moneda" onclick="ir('moneda')">◉<br>Moneda</button>
+  <button data-page="recompensas" onclick="ir('recompensas')">◇<br>Beneficios</button>
+  <button data-page="movimientos" onclick="ir('movimientos')">↗<br>Actividad</button>
+  <button data-page="perfil" onclick="ir('perfil')">○<br>Perfil</button>
+</nav>
+<script>
+function ir(p){
+  document.querySelectorAll('main section').forEach(s=>s.hidden=s.id!==p);
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===p));
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
